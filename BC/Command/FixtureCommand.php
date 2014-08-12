@@ -23,6 +23,10 @@ class FixtureCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $app = $this->getSilexApplication();
+        $fixtures = $app['benno.fixtures'];
+
+        $fixtures->run();
 
     }
 
