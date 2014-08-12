@@ -11,6 +11,7 @@ namespace BC\Provider;
 use Silex\ServiceProviderInterface;
 use Silex\Application;
 use BC\Command\FixtureCommand;
+use BC\Fixtures\Manager;
 
 use Knp\Console\ConsoleEvents;
 use Knp\Console\ConsoleEvent;
@@ -30,7 +31,7 @@ class FixtureServiceProvider implements ServiceProviderInterface
         // TODO: Implement register() method.
 
         $app['benno.fixtures'] = $app->share(function() use ($app){
-            return new \BC\Fixtures\Manager($app['db'], $app, Finder::create()->in($app['fixtures.path']));
+            return new Manager($app['db'], $app, Finder::create()->in($app['fixtures.path']));
         });
 
         $app['dispatcher']->addListener(ConsoleEvents::INIT, function(ConsoleEvent $event) {
