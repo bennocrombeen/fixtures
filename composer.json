@@ -1,0 +1,20 @@
+{
+    "name": "benno/fixtures-service",
+    "description": "a Silex service for running fixtures",
+    "require": {
+        "php":                              ">=5.3.2",
+        "doctrine/dbal":                    "~2.1"
+
+    },
+    "autoload": {
+        "psr-0": {
+            "BC\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Benno Crombeen",
+            "email": "benno@emark.nl"
+        }
+    ]
+}
