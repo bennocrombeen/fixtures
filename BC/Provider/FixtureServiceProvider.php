@@ -12,6 +12,9 @@ use Silex\ServiceProviderInterface;
 use Silex\Application;
 use BC\Command\FixtureCommand;
 
+use Knp\Console\ConsoleEvents;
+use Knp\Console\ConsoleEvent;
+
 class FixtureServiceProvider implements ServiceProviderInterface
 {
     /**
@@ -25,6 +28,8 @@ class FixtureServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         // TODO: Implement register() method.
+
+
 
 
         $app['dispatcher']->addListener(ConsoleEvents::INIT, function(ConsoleEvent $event) {
