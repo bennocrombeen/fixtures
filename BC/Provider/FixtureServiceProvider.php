@@ -12,6 +12,7 @@ use Silex\ServiceProviderInterface;
 use Silex\Application;
 use BC\Command\FixtureCommand;
 use BC\Fixtures\Manager;
+use Symfony\Component\Finder\Finder;
 
 use Knp\Console\ConsoleEvents;
 use Knp\Console\ConsoleEvent;

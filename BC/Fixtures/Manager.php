@@ -31,6 +31,15 @@ class Manager
 
     public function run()
     {
+        foreach($this->getFixtures() as $fixture){
+            $fixture->run($this->connection);
+        }
+    }
+
+
+
+    protected function getFixtures()
+    {
         $finder     = clone($this->finder);
 
         $finder->files()
@@ -38,11 +47,27 @@ class Manager
             ->sortByName()
         ;
 
+        $availableFixtures = [];
+
         foreach($finder as $fixture){
-            var_dump($fixture);
+
+            if(preg_match('/^(.*Fixture).php$/', basename($fixture), $matches)){
+                list($file, $class) = $matches;
+
+                require_once $fixture;
+
+                $clz = '\\Fixture\\' . $class;
+                $rf = new \ReflectionClass($clz);
+
+                if(!$rf->isSubclassOf('\\BC\\Fixtures\\AbstractFixture')){
+                    throw new \Exception('Not subclass of');
+                }
+
+                $availableFixtures[] = new $clz();
+            }
         }
-
-
+        return $availableFixtures;
     }
+
 
 } 
